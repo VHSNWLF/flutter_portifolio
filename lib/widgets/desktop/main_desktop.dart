@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portifolio/constants/colors.dart';
 
 class MainDesktop extends StatelessWidget {
-  const MainDesktop({super.key});
+  const MainDesktop({super.key, required this.buttonTapNav});
+  final Function(int) buttonTapNav;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class MainDesktop extends StatelessWidget {
                         SizedBox(
                           width: 250,
                           child: ElevatedButton(onPressed: () {
-                            
+                            buttonTapNav(3);
                           }, child: const Text("Get in touch", 
                           style: TextStyle(
                             color: CustomColor.whitePrimary, 
@@ -42,12 +43,18 @@ class MainDesktop extends StatelessWidget {
                         )
                       ],
                     ),
-                    ClipOval(
-                      child: Image.asset(
-                        "assets/images/Vitor.jpg",
-                        width: screenWidth / 3,
-                        height: screenWidth / 3, // Defina a altura igual à largura para torná-la circular
-                        fit: BoxFit.cover, // Preenche a área para cobrir o espaço
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxWidth: 500,
+                        maxHeight: 500
+                      ),
+                      child: ClipOval(
+                        child: Image.asset(
+                          "assets/images/Vitor.jpg",
+                          width: screenWidth / 3,
+                          height: screenWidth / 3, // Defina a altura igual à largura para torná-la circular
+                          fit: BoxFit.cover, // Preenche a área para cobrir o espaço
+                        ),
                       ),
                     )
                   ],

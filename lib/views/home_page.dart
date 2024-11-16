@@ -2,21 +2,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_portifolio/constants/colors.dart';
-import 'package:flutter_portifolio/constants/nav_items.dart';
 import 'package:flutter_portifolio/constants/size.dart';
-import 'package:flutter_portifolio/constants/skill_items.dart';
-import 'package:flutter_portifolio/styles/style.dart';
-import 'package:flutter_portifolio/utils/projects_utils.dart';
-import 'package:flutter_portifolio/widgets/drawer_mobile.dart';
-import 'package:flutter_portifolio/widgets/header_desktop.dart';
-import 'package:flutter_portifolio/widgets/header_mobile.dart';
-import 'package:flutter_portifolio/widgets/main_desktop.dart';
-import 'package:flutter_portifolio/widgets/main_mobile.dart';
-import 'package:flutter_portifolio/widgets/project_card.dart';
-import 'package:flutter_portifolio/widgets/site_logo.dart';
-import 'package:flutter_portifolio/widgets/skills_desktop.dart';
-import 'package:flutter_portifolio/widgets/skills_mobile.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_portifolio/constants/sns_links.dart';
+import 'package:flutter_portifolio/widgets/contact_section.dart';
+import 'package:flutter_portifolio/widgets/mobile/drawer_mobile.dart';
+import 'package:flutter_portifolio/widgets/desktop/header_desktop.dart';
+import 'package:flutter_portifolio/widgets/mobile/header_mobile.dart';
+import 'package:flutter_portifolio/widgets/desktop/main_desktop.dart';
+import 'package:flutter_portifolio/widgets/mobile/main_mobile.dart';
+import 'package:flutter_portifolio/widgets/projects_section.dart';
+import 'package:flutter_portifolio/widgets/desktop/skills_desktop.dart';
+import 'package:flutter_portifolio/widgets/mobile/skills_mobile.dart';
+import 'dart:js' as js;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,6 +24,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePage extends State<HomePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final scrollController = ScrollController();
+  final List<GlobalKey> navBarKeys = List.generate(4, (index) => GlobalKey(),);
+
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -35,86 +36,96 @@ class _HomePage extends State<HomePage> {
       builder: (context, constraints) {
         return Scaffold(
           key: scaffoldKey,
-          endDrawer:constraints.maxWidth >= kMinDesktopWidth ? null : const DrawerMobile(),
+          endDrawer:constraints.maxWidth >= kMinDesktopWidth ? null : DrawerMobile(onNavItemTap: (int index) {
+            //call func
+            scrollToSection(index);
+            scaffoldKey.currentState?.closeEndDrawer();
+          },),
           backgroundColor: CustomColor.scaffoldBg,
-          body: ListView(
+          body: SingleChildScrollView(
+            controller: scrollController,
             scrollDirection: Axis.vertical,
-            children: [
-        
-              // MAIN
-              //if(constraints.maxWidth>=kMinDesktopWidth)
-              //const HeaderDesktop() else
-              //HeaderMobile(
-              //  onLogoTap: () {},
-              //  onMenuTap: () {
-              //    scaffoldKey.currentState?.openEndDrawer();
-              //  },
-              //),
-//
-              //if(constraints.maxWidth>=kMinDesktopWidth)
-              //const MainDesktop() else const MainMobile(),
-//
-              //// SKILLS
-              //Container(
-              //  width: screenWidth,
-              //  color: CustomColor.bgLight1,
-              //  padding: EdgeInsets.fromLTRB(25, 20, 25, 60),
-              //  child: Column(
-              //    mainAxisSize: MainAxisSize.min,
-              //    children: [
-              //      
-              //      //title
-              //      const Text("What I can do", style: TextStyle(
-              //        fontSize: 24,
-              //        fontWeight: FontWeight.bold,
-              //        color: CustomColor.whitePrimary,
-              //      ),),
-              //      const SizedBox(height: 30,),
-//
-              //      //plataforms and skills
-              //      if(constraints.maxWidth>=kMedDesktopWidth)
-              //      const SkillsDesktop() else const SkillsMobile()
-              //      
-              //    ],
-              //  ),
-              //),
-        
-              // PROJECTS
-              Container(
-                padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
-                width: screenWidth,
-                child: Column(
-                  children: [
-                    //Work Project title
-                    const Text("Work Projects", style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: CustomColor.whitePrimary,
-                    ),),
-                    const SizedBox(height: 20,),
-
-                    //Work Porjects cards
-                    //ProjectCardWidget(projects: ProjectsUtils.n().hobbyProjectsUtils.first)
-                  ],
+            child: Column(
+              children: [
+                SizedBox(key: navBarKeys.first,),
+                // MAIN
+                if(constraints.maxWidth>=kMinDesktopWidth)
+                HeaderDesktop(onNavMenuTap: (int index) {
+                  //call func
+                  scrollToSection(index);
+                },) else
+                HeaderMobile(
+                  onLogoTap: () {},
+                  onMenuTap: () {
+                    scaffoldKey.currentState?.openEndDrawer();
+                  },
                 ),
-              ),
-        
-              // CONTACT
-              Container(
-                height: 500,
-                width: double.maxFinite,
-                color: Colors.blueGrey,
-              ),
-        
-              // FOOTER
-              Container(
-                height: 500,
-                width: double.maxFinite,
-              ),
-            ],
+            //
+                if(constraints.maxWidth>=kMinDesktopWidth)
+                MainDesktop(buttonTapNav: (int index) {
+                  scrollToSection(index);
+                },) else const MainMobile(),
+            //
+                // SKILLS
+                Container(
+                  key: navBarKeys[1],
+                  width: screenWidth,
+                  color: CustomColor.bgLight1,
+                  padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      
+                      //title
+                      const Text("What I can do", style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: CustomColor.whitePrimary,
+                      ),),
+                      const SizedBox(height: 30,),
+            //
+                      //plataforms and skills
+                      if(constraints.maxWidth>=kMedDesktopWidth)
+                      const SkillsDesktop() else const SkillsMobile()
+                      
+                    ],
+                  ),
+                ),
+                    //
+                // PROJECTS
+                ProjectsSection(key: navBarKeys[2],),
+            //
+                //const SizedBox(height: 30,),
+                    
+                // CONTACT
+                ContactSection(key: navBarKeys[3],),
+                    
+                // FOOTER
+                Container(
+                  height: 100,
+                  width: double.maxFinite,
+                  child: const Center(child: Text("Made by Vitor H.S Nascimento with a youtube tutorial by Shohruh AK.",style: TextStyle(color: CustomColor.whiteSecondary, fontWeight: FontWeight.w400),)),
+                ),
+              ],
+            ),
           )
         );
       }
     );
   }
+
+  void scrollToSection(int navIndex){
+    if(navIndex == 4){
+      //open a blog page
+      js.context.callMethod("open", [SnsLinks.blog]);
+      return;
+    }
+    
+    final key = navBarKeys[navIndex];
+    Scrollable.ensureVisible(
+      key.currentContext!,
+      duration: const Duration(microseconds: 500), 
+      curve: Curves.easeInOut);
+  }
+
 }
