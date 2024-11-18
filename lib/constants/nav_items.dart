@@ -5,7 +5,15 @@ List<String> navTitles = [
   "Skills",
   "Projects",
   "Contact",
-  "Blog"
+  "About me"
+];
+
+List<String> navTitlesBR = [
+  "Início",
+  "Habilidades",
+  "Projetos",
+  "Contate-me",
+  "Sobre-mim"
 ];
 
 List<IconData> navIcons = [

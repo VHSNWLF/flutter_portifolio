@@ -7,12 +7,12 @@ class SiteLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
-      child: const Text("V.H", style: TextStyle(
-        fontSize: 22,
+      child: const Text('<"V.H."/>', style: TextStyle(
+        fontSize: 30,
         fontWeight: FontWeight.bold,
-        decoration: TextDecoration.underline,
+        fontFamily: "Krypton",
         color: CustomColor.yellowSecondary
       ),),
     );

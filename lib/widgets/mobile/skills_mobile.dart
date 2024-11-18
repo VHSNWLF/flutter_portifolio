@@ -17,16 +17,16 @@ class SkillsMobile extends StatelessWidget {
           //Plataforms
           for(int i=0; i< plataformItems.length; i++)
           Container(
-            margin: EdgeInsets.only(bottom: 5),
+            margin: const EdgeInsets.only(bottom: 5),
             width: double.maxFinite,
             decoration: BoxDecoration(
               color: CustomColor.bgLight2,
               borderRadius: BorderRadius.circular(5),
             ),
             child: ListTile(
-              contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              leading: Image.asset(plataformItems[i]["img"], width: 26,),
-              title: Text(plataformItems[i]["title"]),
+              contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              leading: Image.asset(plataformItems[i]["img"], width: 26, color: Colors.white,),
+              title: Text(plataformItems[i]["title"], style: const TextStyle(fontFamily: "Krypton",color: CustomColor.yellowSecondary),),
             ),
           ),
           const SizedBox(height: 50,),
@@ -40,7 +40,7 @@ class SkillsMobile extends StatelessWidget {
                 Chip(
                   backgroundColor: CustomColor.bgLight2,
                   padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                  label: Text(skillItems[i]["title"]), avatar: SvgPicture.asset(skillItems[i]["img"]),
+                  label: Text(skillItems[i]["title"], style: const TextStyle(fontFamily: "Krypton", color: CustomColor.yellowSecondary),), avatar: SvgPicture.asset(skillItems[i]["img"]),
                 ),
             ],
           )

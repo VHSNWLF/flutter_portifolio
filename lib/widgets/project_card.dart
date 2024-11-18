@@ -3,6 +3,7 @@ import 'package:flutter_portifolio/constants/colors.dart';
 import 'package:flutter_portifolio/utils/projects_utils.dart';
 import 'dart:js' as js;
 
+// ignore: must_be_immutable
 class ProjectCardWidget extends StatelessWidget {
   ProjectCardWidget({
     super.key,
@@ -37,6 +38,7 @@ class ProjectCardWidget extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
+                fontFamily: "Krypton",
                 fontWeight: FontWeight.w600,
                 fontSize: 15,
                 color: CustomColor.whitePrimary,
@@ -52,6 +54,7 @@ class ProjectCardWidget extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
+                fontFamily: "Krypton",
                 fontSize: 15,
                 color: CustomColor.whiteSecondary,
               ),
@@ -69,8 +72,9 @@ class ProjectCardWidget extends StatelessWidget {
                 const Text(
                   "Available on: ",
                   style: TextStyle(
+                    fontFamily: "Krypton",
                     color: CustomColor.yellowSecondary,
-                    fontSize: 15,
+                    fontSize: 10,
                   ),
                 ),
                 const Spacer(),
@@ -80,7 +84,7 @@ class ProjectCardWidget extends StatelessWidget {
                     onTap: () {
                       js.context.callMethod("open", [listaProjetos.androidLink]);
                     },
-                    child: Image.asset("assets/icons/androidBranco.png", height: 30),
+                    child: Image.asset("assets/icons/androidBranco.png", height: 23),
                   ),
 
                 if (listaProjetos.iosLink != null)
@@ -90,7 +94,7 @@ class ProjectCardWidget extends StatelessWidget {
                       onTap: () {
                         js.context.callMethod("open", [listaProjetos.iosLink]);
                       },
-                      child: Image.asset("assets/icons/appleBranco.png", height: 30),
+                      child: Image.asset("assets/icons/appleBranco.png", height: 23),
                     ),
                   ),
 
@@ -99,7 +103,7 @@ class ProjectCardWidget extends StatelessWidget {
                     onTap: () {
                       js.context.callMethod("open", [listaProjetos.webLink]);
                     },
-                    child: Image.asset("assets/icons/websiteBranco.png", height: 30),
+                    child: Image.asset("assets/icons/websiteBranco.png", height: 23),
                   ),
               ],
             ),

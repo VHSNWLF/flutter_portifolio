@@ -18,6 +18,7 @@ class ContactSection extends StatelessWidget {
 
           //title
           const Text("Get in touch", style: TextStyle(
+            fontFamily: "Krypton",
             fontWeight: FontWeight.bold,
             fontSize: 24,
             color: CustomColor.whitePrimary,
@@ -65,8 +66,9 @@ class ContactSection extends StatelessWidget {
               }, child: const Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Text("Get in touch", style: TextStyle(
+                  fontFamily: "Krypton",
                   fontSize: 20,
-                  color: CustomColor.whitePrimary,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold
                 ),),
               ),

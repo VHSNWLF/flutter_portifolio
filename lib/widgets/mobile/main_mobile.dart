@@ -17,7 +17,6 @@ class MainMobile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     //avatar img
                     Center(
                       child: ClipOval(
@@ -42,7 +41,9 @@ class MainMobile extends StatelessWidget {
                     SizedBox(height: 30,),
 
                     //intro text
-                    Text("Hi,\nI'm Vitor H.S. Nascimento\nA Flutter Developer", style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary, height: 1.5),),
+                    Text("Hi,\nI'm Vitor H.S. Nascimento\nA Flutter Developer", style: TextStyle(
+                      fontFamily: "Krypton",
+                      fontSize: 24.0, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary, height: 1.5),),
                     
 
                     //btn
@@ -54,6 +55,7 @@ class MainMobile extends StatelessWidget {
                         padding: const EdgeInsets.all(10.0),
                         child: const Text("Get in touch", 
                         style: TextStyle(
+                          fontFamily: "Krypton",
                           color: CustomColor.whitePrimary, 
                           fontWeight: FontWeight.bold, 
                           fontSize: 15

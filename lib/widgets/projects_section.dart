@@ -9,38 +9,6 @@ class ProjectsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<ProjectsUtils> workProjects = [
-      ProjectsUtils(
-        "assets/projects/EcoMoment.png", 
-        "EcoMoment", 
-        "EcoMoment ment ment ment", 
-        "www.androidlink.com", 
-        "www.ioslink.com", 
-        "https://www.google.com"
-      ),
-      ProjectsUtils(
-        "assets/projects/EcoMoment.png", 
-        "EcoMoment", 
-        "EcoMoment ment ment ment", 
-        "www.androidlink.com", 
-        "www.ioslink.com", 
-        "https://www.google.com"
-      ),
-      ProjectsUtils(
-        "assets/projects/EcoMoment.png", 
-        "EcoMoment", 
-        "EcoMoment ment ment ment", 
-        "www.androidlink.com", 
-        "www.ioslink.com", 
-        "https://www.google.com"
-      ),
-      ProjectsUtils(
-        "assets/projects/EcoMoment.png", 
-        "EcoMoment", 
-        "EcoMoment ment ment ment", 
-        "www.androidlink.com", 
-        "www.ioslink.com", 
-        "https://www.google.com"
-      ),
     ];
 
     List<ProjectsUtils> hobbyProjects = [
@@ -51,42 +19,19 @@ class ProjectsSection extends StatelessWidget {
         "www.androidlink.com", 
         "www.ioslink.com", 
         "https://www.google.com"
-      ),
-      ProjectsUtils(
-        "assets/projects/EcoMoment.png", 
-        "EcoMoment", 
-        "EcoMoment ment ment ment", 
-        "www.androidlink.com", 
-        "www.ioslink.com", 
-        "https://www.google.com"
-      ),
-      ProjectsUtils(
-        "assets/projects/EcoMoment.png", 
-        "EcoMoment", 
-        "EcoMoment ment ment ment", 
-        "www.androidlink.com", 
-        "www.ioslink.com", 
-        "https://www.google.com"
-      ),
-      ProjectsUtils(
-        "assets/projects/EcoMoment.png", 
-        "EcoMoment", 
-        "EcoMoment ment ment ment", 
-        "www.androidlink.com", 
-        "www.ioslink.com", 
-        "https://www.google.com"
-      ),
-      
+      ),      
     ];
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
     return Container(
+      decoration: BoxDecoration(color: CustomColor.scaffoldBg),
       padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
       width: screenWidth,
       child:  Column(
         children: [
           //Work Project title
           const Text("Work Projects", style: TextStyle(
+            fontFamily: "Krypton",
             fontSize: 24,
             fontWeight: FontWeight.bold,
             color: CustomColor.whitePrimary,
@@ -113,6 +58,7 @@ class ProjectsSection extends StatelessWidget {
           const SizedBox(height: 20,),
           //Hobby Project title
           const Text("Hobby Projects", style: TextStyle(
+            fontFamily: "Krypton",
             fontSize: 24,
             fontWeight: FontWeight.bold,
             color: CustomColor.whitePrimary,
@@ -121,6 +67,7 @@ class ProjectsSection extends StatelessWidget {
 
           //Hobby Porjects cards
           hobbyProjects.isEmpty ? const Center(child: Text("None", style: TextStyle(
+            fontFamily: "Krypton",
             color: CustomColor.whitePrimary,
             fontSize: 15,
           ),),) :

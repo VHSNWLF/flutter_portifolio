@@ -32,7 +32,7 @@ class DrawerMobile extends StatelessWidget {
                 onNavItemTap(i);
               },
               leading: Icon(navIcons[i]),
-              title: Text(navTitles[i]),
+              title: Text(navTitles[i], style: const TextStyle(fontFamily: "Krypton",color: CustomColor.yellowSecondary),),
             )
           ],
         ),

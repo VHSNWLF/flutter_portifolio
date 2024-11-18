@@ -23,7 +23,7 @@ class MainDesktop extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Hi,\nI'm Vitor H.S. Nascimento\nA Flutter Developer", style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary, height: 1.5),),
+                        Text("Hi,\nI'm Vitor H.S. Nascimento\nA Flutter Developer", style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold,fontFamily: "Krypton" , color: CustomColor.whitePrimary, height: 1.5),),
                         const SizedBox(height: 15,),
                         SizedBox(
                           width: 250,
@@ -31,7 +31,8 @@ class MainDesktop extends StatelessWidget {
                             buttonTapNav(3);
                           }, child: const Text("Get in touch", 
                           style: TextStyle(
-                            color: CustomColor.whitePrimary, 
+                            fontFamily: "Krypton",
+                            color: Colors.black, 
                             fontWeight: FontWeight.bold, 
                             fontSize: 15
                             ),

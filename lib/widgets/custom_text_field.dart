@@ -14,16 +14,17 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      
       cursorColor: CustomColor.hintDark,
       controller: controller,
       maxLines: maxLines,
   style: const TextStyle(
+    fontFamily: "Krypton",
     color: CustomColor.scaffoldBg,
   ),
   decoration: InputDecoration(
     hintText: hintText,
     hintStyle: const TextStyle(
+      fontFamily: "Krypton",
       color: CustomColor.hintDark,
     ),
     contentPadding: const EdgeInsets.all(16),
