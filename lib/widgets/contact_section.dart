@@ -1,15 +1,20 @@
+import 'dart:convert';
+
+import 'package:easy_resend/easy_resend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portifolio/constants/colors.dart';
 import 'package:flutter_portifolio/constants/size.dart';
 import 'package:flutter_portifolio/constants/sns_links.dart';
 import 'package:flutter_portifolio/widgets/custom_text_field.dart';
 import 'dart:js' as js;
+import 'package:http/http.dart' as http;
 
 class ContactSection extends StatelessWidget {
-  const ContactSection({super.key});
+  ContactSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
       color: CustomColor.bgLight1,
@@ -46,7 +51,7 @@ class ContactSection extends StatelessWidget {
             constraints: const BoxConstraints(
               maxWidth: 700,
             ),
-            child: const CustomTextField(hintText: "Your message", maxLines: 16,)),
+            child:  CustomTextField(hintText: "Your message", maxLines: 16, controller: controller_message,)),
 
           const SizedBox(height: 20,),
 
@@ -62,7 +67,8 @@ class ContactSection extends StatelessWidget {
                   backgroundColor: CustomColor.yellowPrimary
                 ),
                 onPressed: () {
-                
+                  String message = "<strong>Nome:</strong> ${controller_name.text}<br><strong>Email:</strong> ${controller_email.text}<br><strong>Mensagem:</strong> ${controller_message.text}"; 
+                  sendEmail(nameEmailAndText: message);
               }, child: const Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Text("Get in touch", style: TextStyle(
@@ -112,34 +118,61 @@ class ContactSection extends StatelessWidget {
   }
 
   Row buildNameEmailFieldDesktop(){
-    return const Row(
+    return Row(
       children: [
         //name
         Flexible(
-          child: CustomTextField(hintText: "Your name",),
+          child: CustomTextField(hintText: "Your name", controller: controller_name,),
         ),
-        SizedBox(width: 15,),
+        const SizedBox(width: 15,),
         //email
         Flexible(
-          child: CustomTextField(hintText: "Your email",),
+          child: CustomTextField(hintText: "Your email", controller: controller_email,),
         ),
       ],
     );
   }
 
   Column buildNameEmailFieldMobile(){
-    return const Column(
+    return Column(
       children: [
         //name
         Flexible(
-          child: CustomTextField(hintText: "Your name",),
+          child: CustomTextField(hintText: "Your name", controller: controller_name,),
         ),
-        SizedBox(height: 15,),
+        const SizedBox(height: 15,),
         //email
         Flexible(
-          child: CustomTextField(hintText: "Your email",),
+          child: CustomTextField(hintText: "Your email", controller: controller_email,),
         ),
       ],
     );
   }
+
+    TextEditingController controller_name = TextEditingController();
+    TextEditingController controller_email = TextEditingController();
+    TextEditingController controller_message = TextEditingController();
+
+  
+Future<void> sendEmail({
+  required String nameEmailAndText,
+}) async {
+  final url = Uri.parse('http://192.168.3.115:3000/send-email'); // Altere para o endereço do seu backend
+  final headers = {'Content-Type': 'application/json'};
+  final body = jsonEncode({
+    'html': nameEmailAndText,
+  });
+
+  try {
+    final response = await http.post(url, headers: headers, body: body);
+
+    if (response.statusCode == 200) {
+      print('Email enviado com sucesso!');
+    } else {
+      print('Erro ao enviar email: ${response.body}');
+    }
+  } catch (e) {
+    print('Erro na requisição: $e');
+  }
+}
 }

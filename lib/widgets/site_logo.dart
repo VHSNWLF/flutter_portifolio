@@ -7,14 +7,16 @@ class SiteLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: onTap,
-      child: const Text('<"V.H."/>', style: TextStyle(
-        fontSize: 30,
+      child: Text('<"V.H."/>', style: TextStyle(
+        fontSize: screenWidth * .03,
         fontWeight: FontWeight.bold,
         fontFamily: "Krypton",
         color: CustomColor.yellowSecondary
-      ),),
+      ),
+      ),
     );
   }
 }

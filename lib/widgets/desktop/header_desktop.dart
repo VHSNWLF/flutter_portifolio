@@ -19,6 +19,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       height: 60,
       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -50,7 +51,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
                     navTitles[i],
                     style: TextStyle(
                       color: isHoveredList[i] ? CustomColor.yellowSecondary : CustomColor.whitePrimary, // Altera a cor no hover
-                      fontSize: 16,
+                      fontSize: screenWidth * .02,
                       fontFamily: "Krypton",
                     ),
                   ),
