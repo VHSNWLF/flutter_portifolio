@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portifolio/constants/colors.dart';
 
@@ -41,30 +42,38 @@ class MainMobile extends StatelessWidget {
                     SizedBox(height: 30,),
 
                     //intro text
-                    Text("Hi,\nI'm Vitor H.S. Nascimento\nA Flutter Developer", style: TextStyle(
-                      fontFamily: "Krypton",
-                      fontSize: 24.0, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary, height: 1.5),),
+                    Center(
+                      child: AnimatedTextKit(animatedTexts: [
+                        TyperAnimatedText("Hi,\nI'm Vitor H.S. Nascimento\nA Flutter Developer", speed: Duration(milliseconds: 100), textStyle: TextStyle(
+                        fontFamily: "Krypton",
+                        fontSize: 24.0, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary, height: 1.5)),
+                      ],
+                      isRepeatingAnimation: false,
+                      ),
+                    ),
                     
 
                     //btn
                     SizedBox(
                       width: 250,
-                      child: ElevatedButton(onPressed: () {
-                        
-                      }, child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: const Text("Get in touch", 
-                        style: TextStyle(
-                          fontFamily: "Krypton",
-                          color: CustomColor.whitePrimary, 
-                          fontWeight: FontWeight.bold, 
-                          fontSize: 15
+                      child: Center(
+                        child: ElevatedButton(onPressed: () {
+                          
+                        }, child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: const Text("Get in touch", 
+                          style: TextStyle(
+                            fontFamily: "Krypton",
+                            color: CustomColor.whitePrimary, 
+                            fontWeight: FontWeight.bold, 
+                            fontSize: 15
+                            ),
                           ),
                         ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: CustomColor.yellowPrimary
-                      ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: CustomColor.yellowPrimary
+                        ),
+                        ),
                       ),
                     )
 

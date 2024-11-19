@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:easy_resend/easy_resend.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portifolio/constants/colors.dart';
 import 'package:flutter_portifolio/constants/size.dart';
@@ -8,6 +7,7 @@ import 'package:flutter_portifolio/constants/sns_links.dart';
 import 'package:flutter_portifolio/widgets/custom_text_field.dart';
 import 'dart:js' as js;
 import 'package:http/http.dart' as http;
+import 'package:toastification/toastification.dart';
 
 class ContactSection extends StatelessWidget {
   ContactSection({super.key});
@@ -20,7 +20,6 @@ class ContactSection extends StatelessWidget {
       color: CustomColor.bgLight1,
       child:    Column(
         children: [
-
           //title
           const Text("Get in touch", style: TextStyle(
             fontFamily: "Krypton",
@@ -66,9 +65,37 @@ class ContactSection extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: CustomColor.yellowPrimary
                 ),
-                onPressed: () {
-                  String message = "<strong>Nome:</strong> ${controller_name.text}<br><strong>Email:</strong> ${controller_email.text}<br><strong>Mensagem:</strong> ${controller_message.text}"; 
-                  sendEmail(nameEmailAndText: message);
+                onPressed: () async {
+                  if(controller_email.text.trim() == "" || controller_name.text.trim() == "" || controller_message.text.trim() == ""){
+                    toastification.show(
+                      context: context,
+                      style: ToastificationStyle.flatColored,
+                      type: ToastificationType.error,
+                      title: const Text("Nenhum campo pode estar vazio!"),
+                      autoCloseDuration: const Duration(seconds: 3),
+                    );
+                  } else{
+                    bool isOk = false;
+                    String message = "<strong>Nome:</strong> ${controller_name.text}<br><strong>Email:</strong> ${controller_email.text}<br><strong>Mensagem:</strong> ${controller_message.text}"; 
+                    isOk = await sendEmail(nameEmailAndText: message);
+                    if(isOk){
+                    toastification.show(
+                      context: context,
+                      style: ToastificationStyle.flatColored,
+                      type: ToastificationType.success,
+                      title: const Text("Email enviado com sucesso!"),
+                      autoCloseDuration: const Duration(seconds: 3),
+                    );
+                  }else{
+                    toastification.show(
+                      context: context,
+                      style: ToastificationStyle.flatColored,
+                      type: ToastificationType.warning,
+                      title: const Text("Erro ao enviar Email!"),
+                      autoCloseDuration: const Duration(seconds: 3),
+                    );
+                  }
+                }
               }, child: const Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Text("Get in touch", style: TextStyle(
@@ -154,10 +181,10 @@ class ContactSection extends StatelessWidget {
     TextEditingController controller_message = TextEditingController();
 
   
-Future<void> sendEmail({
+Future<bool> sendEmail({
   required String nameEmailAndText,
 }) async {
-  final url = Uri.parse('http://192.168.3.115:3000/send-email'); // Altere para o endereço do seu backend
+  final url = Uri.parse('http://localhost:3000/send-email');
   final headers = {'Content-Type': 'application/json'};
   final body = jsonEncode({
     'html': nameEmailAndText,
@@ -165,14 +192,16 @@ Future<void> sendEmail({
 
   try {
     final response = await http.post(url, headers: headers, body: body);
-
     if (response.statusCode == 200) {
       print('Email enviado com sucesso!');
+      return true;
     } else {
       print('Erro ao enviar email: ${response.body}');
+      return false;
     }
   } catch (e) {
     print('Erro na requisição: $e');
+    return false;
   }
 }
 }

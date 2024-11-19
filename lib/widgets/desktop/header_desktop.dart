@@ -22,12 +22,15 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       height: 60,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10,),
       decoration: widget.scrolled ? const BoxDecoration(color: Colors.black54) : null,
       width: double.maxFinite,
       child: Row(
         children: [
-          SiteLogo(onTap: widget.onLogoTap),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: SiteLogo(onTap: widget.onLogoTap),
+          ),
           const Spacer(),
           for (int i = 0; i < navTitles.length; i++)
             Padding(
@@ -47,12 +50,15 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
                   onPressed: () {
                     widget.onNavMenuTap(i);
                   },
-                  child: Text(
-                    navTitles[i],
-                    style: TextStyle(
-                      color: isHoveredList[i] ? CustomColor.yellowSecondary : CustomColor.whitePrimary, // Altera a cor no hover
-                      fontSize: screenWidth * .02,
-                      fontFamily: "Krypton",
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
+                    child: Text(
+                      navTitles[i],
+                      style: TextStyle(
+                        color: isHoveredList[i] ? CustomColor.yellowSecondary : CustomColor.whitePrimary, // Altera a cor no hover
+                        fontSize: screenWidth * .02,
+                        fontFamily: "Krypton",
+                      ),
                     ),
                   ),
                 ),

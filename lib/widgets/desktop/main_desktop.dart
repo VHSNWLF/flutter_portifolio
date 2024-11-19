@@ -1,5 +1,6 @@
 // ignore_for_file: sort_child_properties_last, prefer_const_constructors
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portifolio/constants/colors.dart';
 
@@ -12,7 +13,9 @@ class MainDesktop extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20,),
+      decoration: BoxDecoration(
+        color: Colors.black54
+      ),
       height: screenSize.height,
       constraints: BoxConstraints(
         minHeight: 350.0,
@@ -23,12 +26,18 @@ class MainDesktop extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Hi,\nI'm Vitor H.S. Nascimento\nA Flutter Developer", style: TextStyle(fontSize: screenWidth/30, fontWeight: FontWeight.bold,fontFamily: "Krypton" , color: CustomColor.whitePrimary, height: 1.5),),
+              AnimatedTextKit(animatedTexts: [
+                        TyperAnimatedText("Hi,\nI'm Vitor H.S. Nascimento\nA Flutter Developer", speed: Duration(milliseconds: 100), textStyle: TextStyle(
+                        fontFamily: "Krypton",
+                        fontSize: 24.0, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary, height: 1.5)),
+                      ],
+                      isRepeatingAnimation: false,
+                      ),
               const SizedBox(height: 15,),
               SizedBox(
                 width: 250,
                 child: ElevatedButton(onPressed: () {
-                  buttonTapNav(3);
+                  buttonTapNav(4);
                 }, child: const Text("Get in touch", 
                 style: TextStyle(
                   fontFamily: "Krypton",

@@ -11,7 +11,7 @@ class SiteLogo extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Text('<"V.H."/>', style: TextStyle(
-        fontSize: screenWidth * .03,
+        fontSize: screenWidth * .02 ,
         fontWeight: FontWeight.bold,
         fontFamily: "Krypton",
         color: CustomColor.yellowSecondary
