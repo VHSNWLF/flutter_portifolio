@@ -3,6 +3,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portifolio/constants/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainDesktop extends StatelessWidget {
   const MainDesktop({super.key, required this.buttonTapNav});
@@ -10,6 +11,7 @@ class MainDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
     return Container(
@@ -29,7 +31,7 @@ class MainDesktop extends StatelessWidget {
               AnimatedTextKit(animatedTexts: [
                         TyperAnimatedText("Hi,\nI'm Vitor H.S. Nascimento\nA Flutter Developer", speed: Duration(milliseconds: 100), textStyle: TextStyle(
                         fontFamily: "Krypton",
-                        fontSize: 24.0, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary, height: 1.5)),
+                        fontSize: 10.sp, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary, height: 1.5)),
                       ],
                       isRepeatingAnimation: false,
                       ),

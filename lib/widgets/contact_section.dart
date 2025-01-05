@@ -5,6 +5,7 @@ import 'package:flutter_portifolio/constants/colors.dart';
 import 'package:flutter_portifolio/constants/size.dart';
 import 'package:flutter_portifolio/constants/sns_links.dart';
 import 'package:flutter_portifolio/widgets/custom_text_field.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:js' as js;
 import 'package:http/http.dart' as http;
 import 'package:toastification/toastification.dart';
@@ -14,17 +15,19 @@ class ContactSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    ScreenUtil.init(context);
+    final screenSize = MediaQuery.of(context).size;
+    double screenWidth = screenSize.width;
     return Container(
       padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
-      color: CustomColor.bgLight1,
+      color: Colors.black45,
       child:    Column(
         children: [
           //title
-          const Text("Get in touch", style: TextStyle(
+          Text("Get in touch", style: TextStyle(
             fontFamily: "Krypton",
             fontWeight: FontWeight.bold,
-            fontSize: 24,
+            fontSize: screenWidth * .03,
             color: CustomColor.whitePrimary,
           ),),
 

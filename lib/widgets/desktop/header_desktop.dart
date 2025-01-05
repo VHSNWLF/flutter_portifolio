@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portifolio/constants/colors.dart';
 import 'package:flutter_portifolio/constants/nav_items.dart';
 import 'package:flutter_portifolio/widgets/site_logo.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HeaderDesktop extends StatefulWidget {
   const HeaderDesktop({super.key, required this.onNavMenuTap, required this.scrolled, required this.onLogoTap});
@@ -19,7 +20,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    ScreenUtil.init(context);
     return Container(
       height: 60,
       padding: const EdgeInsets.symmetric(horizontal: 10,),
@@ -29,7 +30,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: SiteLogo(onTap: widget.onLogoTap),
+            child: SiteLogo(onTap: widget.onLogoTap, scale: 8.sp,),
           ),
           const Spacer(),
           for (int i = 0; i < navTitles.length; i++)
@@ -56,7 +57,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
                       navTitles[i],
                       style: TextStyle(
                         color: isHoveredList[i] ? CustomColor.yellowSecondary : CustomColor.whitePrimary, // Altera a cor no hover
-                        fontSize: screenWidth * .02,
+                        fontSize: 7.sp,
                         fontFamily: "Krypton",
                       ),
                     ),

@@ -15,7 +15,6 @@ class HeaderMobile extends StatelessWidget {
             decoration: scrolled? const BoxDecoration(color: Colors.black54) : null,
             child: Row(
               children: [
-                SiteLogo(onTap: onLogoTap,),
                 const Spacer(),
                 Padding(
                   padding: const EdgeInsets.only(right: 15),

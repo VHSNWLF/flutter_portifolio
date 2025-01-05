@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portifolio/constants/colors.dart';
 import 'package:flutter_portifolio/utils/projects_utils.dart';
 import 'package:flutter_portifolio/widgets/project_card.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProjectsSection extends StatelessWidget {
   const ProjectsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     List<ProjectsUtils> workProjects = [
     ];
 
@@ -24,15 +26,15 @@ class ProjectsSection extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
     return Container(
-      decoration: BoxDecoration(color: CustomColor.scaffoldBg),
+      decoration: BoxDecoration(color: Colors.black26),
       padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
       width: screenWidth,
       child:  Column(
         children: [
           //Work Project title
-          const Text("Work Projects", style: TextStyle(
+          Text("Work Projects", style: TextStyle(
             fontFamily: "Krypton",
-            fontSize: 24,
+            fontSize: screenWidth * .03,
             fontWeight: FontWeight.bold,
             color: CustomColor.whitePrimary,
           ),),
@@ -57,9 +59,9 @@ class ProjectsSection extends StatelessWidget {
 
           const SizedBox(height: 20,),
           //Hobby Project title
-          const Text("Hobby Projects", style: TextStyle(
+          Text("Hobby Projects", style: TextStyle(
             fontFamily: "Krypton",
-            fontSize: 24,
+            fontSize: screenWidth * .03,
             fontWeight: FontWeight.bold,
             color: CustomColor.whitePrimary,
           ),),

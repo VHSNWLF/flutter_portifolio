@@ -3,12 +3,14 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portifolio/constants/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainMobile extends StatelessWidget {
   const MainMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
     return Container(
@@ -46,11 +48,12 @@ class MainMobile extends StatelessWidget {
                       child: AnimatedTextKit(animatedTexts: [
                         TyperAnimatedText("Hi,\nI'm Vitor H.S. Nascimento\nA Flutter Developer", speed: Duration(milliseconds: 100), textStyle: TextStyle(
                         fontFamily: "Krypton",
-                        fontSize: 24.0, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary, height: 1.5)),
+                        fontSize: 24.sp, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary, height: 1.5), textAlign: TextAlign.center),
                       ],
                       isRepeatingAnimation: false,
                       ),
                     ),
+                    SizedBox(height: 20,),
                     
 
                     //btn
@@ -61,12 +64,12 @@ class MainMobile extends StatelessWidget {
                           
                         }, child: Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: const Text("Get in touch", 
+                          child: Text("Get in touch", 
                           style: TextStyle(
                             fontFamily: "Krypton",
                             color: CustomColor.whitePrimary, 
                             fontWeight: FontWeight.bold, 
-                            fontSize: 15
+                            fontSize: 15.sp
                             ),
                           ),
                         ),
