@@ -105,11 +105,10 @@ class _HomePage extends State<HomePage> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          
                           //title
                           Text("What I can do", style: TextStyle(
                             fontFamily: "Krypton",
-                            fontSize: 10.sp,
+                            fontSize:  constraints.maxWidth>=kMinDesktopWidth ? 10.sp : 30.sp,
                             fontWeight: FontWeight.bold,
                             color: CustomColor.whitePrimary,
                           ),),
@@ -118,11 +117,9 @@ class _HomePage extends State<HomePage> {
                           //plataforms and skills
                           if(constraints.maxWidth>=kMedDesktopWidth)
                           const SkillsDesktop() else const SkillsMobile()
-                          
                         ],
                       ),
                     ),
-                        //
                     // PROJECTS
                     ProjectsSection(key: navBarKeys[3],),
                 //

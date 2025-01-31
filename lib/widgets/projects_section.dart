@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portifolio/constants/colors.dart';
+import 'package:flutter_portifolio/constants/size.dart';
 import 'package:flutter_portifolio/utils/projects_utils.dart';
 import 'package:flutter_portifolio/widgets/project_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +26,9 @@ class ProjectsSection extends StatelessWidget {
     ];
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
-    return Container(
+    return LayoutBuilder(builder: (context, constraints) {
+      return
+      Container(
       decoration: BoxDecoration(color: Colors.black26),
       padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
       width: screenWidth,
@@ -34,7 +37,7 @@ class ProjectsSection extends StatelessWidget {
           //Work Project title
           Text("Work Projects", style: TextStyle(
             fontFamily: "Krypton",
-            fontSize: screenWidth * .03,
+            fontSize: constraints.maxWidth>=kMinDesktopWidth ? 10.sp : 30.sp,
             fontWeight: FontWeight.bold,
             color: CustomColor.whitePrimary,
           ),),
@@ -61,17 +64,17 @@ class ProjectsSection extends StatelessWidget {
           //Hobby Project title
           Text("Hobby Projects", style: TextStyle(
             fontFamily: "Krypton",
-            fontSize: screenWidth * .03,
+            fontSize: constraints.maxWidth>=kMinDesktopWidth ? 10.sp : 30.sp,
             fontWeight: FontWeight.bold,
             color: CustomColor.whitePrimary,
           ),),
           const SizedBox(height: 20,),
 
           //Hobby Porjects cards
-          hobbyProjects.isEmpty ? const Center(child: Text("None", style: TextStyle(
+          hobbyProjects.isEmpty ? Center(child: Text("None", style: TextStyle(
             fontFamily: "Krypton",
             color: CustomColor.whitePrimary,
-            fontSize: 15,
+            fontSize: constraints.maxWidth>=kMinDesktopWidth ? 10.sp : 30.sp,
           ),),) :
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 900),
@@ -87,5 +90,6 @@ class ProjectsSection extends StatelessWidget {
         ],
       ),
     );
+    },);
   }
 }

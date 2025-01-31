@@ -31,7 +31,7 @@ class MainDesktop extends StatelessWidget {
               AnimatedTextKit(animatedTexts: [
                         TyperAnimatedText("Hi,\nI'm Vitor H.S. Nascimento\nA Flutter Developer", speed: Duration(milliseconds: 100), textStyle: TextStyle(
                         fontFamily: "Krypton",
-                        fontSize: 10.sp, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary, height: 1.5)),
+                        fontSize: 12.sp, fontWeight: FontWeight.bold, color: CustomColor.whitePrimary, height: 1.5)),
                       ],
                       isRepeatingAnimation: false,
                       ),
