@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_portifolio/provider/languageProvider.dart';
 import 'package:flutter_portifolio/views/home_page.dart';
+import 'package:provider/provider.dart';
 
 class SmoothScrollBehavior extends ScrollBehavior {
   
@@ -21,7 +23,12 @@ class SmoothScrollBehavior extends ScrollBehavior {
 }
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => LanguageProvider(),
+      child: MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {

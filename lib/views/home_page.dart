@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portifolio/constants/colors.dart';
 import 'package:flutter_portifolio/constants/size.dart';
+import 'package:flutter_portifolio/provider/languageProvider.dart';
 import 'package:flutter_portifolio/widgets/contact_section.dart';
 import 'package:flutter_portifolio/widgets/desktop/aboutme_desktop.dart';
 import 'package:flutter_portifolio/widgets/mobile/aboutme_mobile.dart';
@@ -17,6 +18,7 @@ import 'package:flutter_portifolio/widgets/mobile/skills_mobile.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -54,6 +56,7 @@ class _HomePage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final language = Provider.of<LanguageProvider>(context, listen: false);
     ScreenUtil.init(context);
     final screenSize = MediaQuery.of(context).size;
     double screenWidth = screenSize.width;
@@ -69,6 +72,7 @@ class _HomePage extends State<HomePage> {
           backgroundColor: CustomColor.scaffoldBg,
           body: Stack(
             children: [
+              
               // 1. Animação de fundo
             Positioned.fill(
               child: Lottie.asset(
