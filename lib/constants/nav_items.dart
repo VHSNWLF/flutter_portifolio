@@ -10,10 +10,10 @@ List<String> navTitles = [
 
 List<String> navTitlesBR = [
   "Início",
+  "Sobre-mim",
   "Habilidades",
   "Projetos",
-  "Contate-me",
-  "Sobre-mim"
+  "Contato",
 ];
 
 List<IconData> navIcons = [

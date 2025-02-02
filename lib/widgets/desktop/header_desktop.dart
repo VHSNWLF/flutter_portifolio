@@ -25,7 +25,6 @@ class HeaderDesktop extends StatefulWidget {
 class _HeaderDesktopState extends State<HeaderDesktop> {
   List<bool> isHoveredList = List.generate(
       navTitles.length, (_) => false); // Lista para rastrear o estado de hover
-  String selectedLanguage = 'Português - BR'; // Default value
 
 
   @override
@@ -72,8 +71,17 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 0),
-                    child: Text(
+                    child: language.selectedLanguage == "English - EUA" ? Text(
                       navTitles[i],
+                      style: TextStyle(
+                        color: isHoveredList[i]
+                            ? CustomColor.yellowSecondary
+                            : CustomColor.whitePrimary, // Altera a cor no hover
+                        fontSize: 7.sp,
+                        fontFamily: "Krypton",
+                      ),
+                    ) : Text(
+                      navTitlesBR[i],
                       style: TextStyle(
                         color: isHoveredList[i]
                             ? CustomColor.yellowSecondary
@@ -101,11 +109,10 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
             onChanged: (String? newValue) {
               if (newValue != null) {
                   language.changeLanguage(newValue);
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage( ),));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage( ),));
                   setState(() {
                     
                   });
-                  print("Idioma selecionado: "+language.selectedLanguage);
               }
             },
           )

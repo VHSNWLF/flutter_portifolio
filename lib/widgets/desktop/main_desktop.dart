@@ -47,7 +47,14 @@ class MainDesktop extends StatelessWidget {
                   width: 250,
                   child: ElevatedButton(onPressed: () {
                     buttonTapNav(4);
-                  }, child: const Text("Get in touch", 
+                  }, child: language.selectedLanguage == "English - EUA" ? Text("Get in touch", 
+                  style: TextStyle(
+                    fontFamily: "Krypton",
+                    color: Colors.black, 
+                    fontWeight: FontWeight.bold, 
+                    fontSize: 15
+                    ),
+                  ) : Text("Entrar em contato", 
                   style: TextStyle(
                     fontFamily: "Krypton",
                     color: Colors.black, 
